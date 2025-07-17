@@ -44,7 +44,7 @@ const AssistantPage = () => {
         formData.append('image', selectedImage);
       }
 
-      const response = await fetch('http://localhost:5000/api/gemini/assist', {
+      const response = await fetch('https://prepstation-backend.onrender.com/api/gemini/assist', {
         method: 'POST',
         body: formData
       });

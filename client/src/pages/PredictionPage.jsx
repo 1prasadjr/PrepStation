@@ -83,13 +83,13 @@ const PredictionPage = () => {
       
       if (hasImages && hasPDFs) {
         // Mixed files - use PDF endpoint for now
-        endpoint = 'http://localhost:5000/api/gemini/predict-base64';
+        endpoint = 'https://prepstation-backend.onrender.com/api/gemini/predict-base64';
       } else if (hasImages) {
         // Only images - use image endpoint
-        endpoint = 'http://localhost:5000/api/images/predict-questions-base64';
+        endpoint = 'https://prepstation-backend.onrender.com/api/images/predict-questions-base64';
       } else {
         // Only PDFs - use PDF endpoint
-        endpoint = 'http://localhost:5000/api/gemini/predict-base64';
+        endpoint = 'https://prepstation-backend.onrender.com/api/gemini/predict-base64';
       }
 
       const requestBody = hasImages && !hasPDFs 

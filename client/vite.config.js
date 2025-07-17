@@ -12,6 +12,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:5000',
         changeOrigin: true,
+        // NOTE: This proxy is for local development only. For production, use the deployed backend URL in your API calls.
       },
     },
   },

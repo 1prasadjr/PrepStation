@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+client/node_modules/
+
+# Environment variables
+.env
+.env.*
+client/.env
+client/.env.*
+
+# Build output
+dist/
+build/
+client/dist/
+client/build/
+
+# Uploaded files
+uploads/
+public/uploads/
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db 
