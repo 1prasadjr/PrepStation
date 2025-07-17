@@ -22,7 +22,8 @@ const AdminUploadPage = () => {
     e.preventDefault();
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => formData.append(key, value));
-    const res = await fetch('/api/papers/upload', {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${API_URL}/api/papers/upload`, {
       method: 'POST',
       body: formData
     });

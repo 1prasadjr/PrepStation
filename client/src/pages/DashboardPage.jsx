@@ -13,6 +13,7 @@ const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     setLoading(true); // Start loading
@@ -22,7 +23,7 @@ const DashboardPage = () => {
     if (filters.year) params.append('year', filters.year);
     if (filters.semester) params.append('semester', filters.semester);
 
-    fetch(`/api/papers?${params.toString()}`)
+    fetch(`${API_URL}/api/papers?${params.toString()}`)
       .then(res => res.json())
       .then(data => {
         setPapers(data);
@@ -45,7 +46,7 @@ const DashboardPage = () => {
   });
 
   const handleDownload = (paper) => {
-    fetch(`/api/papers/${paper._id}/download`)
+    fetch(`${API_URL}/api/papers/${paper._id}/download`)
       .then(response => {
         if (!response.ok) throw new Error('File not found');
         return response.blob();

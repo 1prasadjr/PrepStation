@@ -182,7 +182,8 @@ const EditProfileForm = ({ user, onClose, onUpdate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/users/profile', {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${API_URL}/api/users/profile`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -225,7 +226,8 @@ const ChangePasswordForm = ({ onClose }) => {
       setMessage('Passwords do not match');
       return;
     }
-    const res = await fetch('/api/users/change-password', {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${API_URL}/api/users/change-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
