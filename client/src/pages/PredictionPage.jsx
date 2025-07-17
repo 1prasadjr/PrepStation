@@ -81,15 +81,17 @@ const PredictionPage = () => {
       const hasImages = files.some(file => file.type.startsWith('image/'));
       const hasPDFs = files.some(file => file.type === 'application/pdf');
       
+      const API_URL = import.meta.env.VITE_API_URL;
+
       if (hasImages && hasPDFs) {
         // Mixed files - use PDF endpoint for now
-        endpoint = 'https://prepstation-backend.onrender.com/api/gemini/predict-base64';
+        endpoint = `${API_URL}/api/gemini/predict-base64`;
       } else if (hasImages) {
         // Only images - use image endpoint
-        endpoint = 'https://prepstation-backend.onrender.com/api/images/predict-questions-base64';
+        endpoint = `${API_URL}/api/images/predict-questions-base64`;
       } else {
         // Only PDFs - use PDF endpoint
-        endpoint = 'https://prepstation-backend.onrender.com/api/gemini/predict-base64';
+        endpoint = `${API_URL}/api/gemini/predict-base64`;
       }
 
       const requestBody = hasImages && !hasPDFs 
