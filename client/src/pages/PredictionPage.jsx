@@ -214,18 +214,18 @@ const PredictionPage = () => {
                 {files.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 bg-gray-800 rounded-lg border border-gray-700"
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-800 rounded-lg border border-gray-700"
                   >
-                    <div className="flex items-center">
-                      <FileText className="text-purple-400 mr-3" size={20} />
-                      <span className="text-white">{file.name}</span>
-                      <span className="text-gray-400 ml-2">
-                        ({(file.size / 1024 / 1024).toFixed(2)} MB)
-                      </span>
+                    <div className="flex flex-col sm:flex-row sm:items-center">
+                      <div className="flex items-center">
+                        <FileText className="text-purple-400 mr-3" size={20} />
+                        <span className="text-white text-sm break-all">{file.name}</span>
+                        <span className="text-gray-400 ml-2 text-xs">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                      </div>
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="text-red-400 hover:text-red-300 transition-colors"
+                      className="text-red-400 hover:text-red-300 transition-colors mt-2 sm:mt-0 sm:ml-4 text-sm"
                     >
                       Remove
                     </button>

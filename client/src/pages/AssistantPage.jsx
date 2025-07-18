@@ -169,7 +169,7 @@ const AssistantPage = () => {
       </div>
 
       {/* Input Area */}
-      <div className="bg-gray-900 border-t border-gray-800 px-4 py-6">
+      <div className="border-t border-gray-800 px-4 py-4 mb-20">
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-end space-x-4">
             <div className="flex-1">
