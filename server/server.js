@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://prepstation-eight.vercel.app"
+      "https://prepstation-live.vercel.app"
     ]
   })
 );
