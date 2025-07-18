@@ -60,16 +60,25 @@ const AssistantPage = () => {
         };
         setMessages(prev => [...prev, assistantMessage]);
       } else {
-        throw new Error('Failed to get response');
+        let errorMessage = 'Failed to get response';
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } else {
+          const errorText = await response.text();
+          errorMessage = errorText || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Error:', error);
       const errorMessage = {
-        id: (Date.now() + 1).toString(),
-        type: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
-        timestamp: new Date()
-      };
+          id: (Date.now() + 1).toString(),
+          type: 'assistant',
+        content: error.message || 'Sorry, I encountered an error. Please try again.',
+          timestamp: new Date()
+        };
       setMessages(prev => [...prev, errorMessage]);
     }
 
@@ -83,7 +92,7 @@ const AssistantPage = () => {
         <h1 className="text-4xl font-bold text-white mb-4">PrepAgent</h1>
         <p className="text-gray-400 max-w-2xl mx-auto">
           Your AI-powered university study assistant. Ask questions, get explanations, and upload images for analysis. PrepAgent is here to help you succeed!
-        </p>
+          </p>
       </div>
 
       {/* Chat Messages */}

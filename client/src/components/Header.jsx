@@ -6,6 +6,7 @@ import { User, Home, Brain, FileText, Settings, Upload } from 'lucide-react';
 const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home },
@@ -92,7 +93,11 @@ const Header = () => {
           </nav>
 
           {/* Mobile menu button */}
-          <button className="md:hidden text-white">
+          <button
+            className="md:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Open menu"
+          >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span className="w-full h-0.5 bg-white mb-1"></span>
               <span className="w-full h-0.5 bg-white mb-1"></span>
@@ -104,6 +109,52 @@ const Header = () => {
       
       {/* Glowing bottom border */}
       <div className="h-0.5 bg-gradient-to-r from-purple-500 to-red-500 shadow-lg shadow-purple-500/50"></div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-95 z-50 flex flex-col items-center py-4">
+          {navItems.map(({ path, label, icon: Icon }) => (
+            <Link
+              key={path}
+              to={path}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 w-full text-center ${
+                location.pathname === path
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/50'
+                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
+              }`}
+            >
+              <Icon size={18} />
+              <span>{label}</span>
+            </Link>
+          ))}
+          {user?.isAdmin && (
+            <Link
+              to="/admin/upload"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 w-full text-center ${
+                location.pathname === '/admin/upload'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/50'
+                  : 'text-purple-400 hover:text-white hover:bg-purple-700'
+              }`}
+            >
+              <Upload size={18} />
+              <span>Upload Paper</span>
+            </Link>
+          )}
+          <div className="flex items-center space-x-4 w-full mt-4">
+            <div className="flex items-center space-x-2 w-full text-center">
+              <User size={20} className="text-purple-400" />
+              <span className="text-white">{user?.name}</span>
+            </div>
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

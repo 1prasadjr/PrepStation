@@ -117,9 +117,9 @@ const HomePage = () => {
 
         {/* Todo List Section */}
         {isAuthenticated && (
-          <section className="py-20 px-4">
-            <div className="max-w-2xl mx-auto">
-              <h3 className="text-3xl font-bold text-white text-center mb-12">
+          <section className="py-10 px-2 sm:py-20 sm:px-4">
+            <div className="w-full max-w-2xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
                 Stay Organized
               </h3>
               <ToDoList />

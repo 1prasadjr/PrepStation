@@ -24,7 +24,7 @@ exports.analyzeQuestions = async (textContent) => {
     return response.text();
   } catch (error) {
     console.error('Gemini API Error:', error);
-    throw new Error('Failed to analyze questions with Gemini API');
+    throw new Error('Encountered an error, Please try again');
   }
 };
 

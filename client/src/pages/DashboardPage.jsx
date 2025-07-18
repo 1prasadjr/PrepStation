@@ -84,68 +84,14 @@ const DashboardPage = () => {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-gray-900 p-6 rounded-lg border border-gray-800 mb-8">
-          <div className="flex items-center mb-4">
-            <Filter className="text-purple-400 mr-2" size={20} />
-            <h3 className="text-xl font-semibold text-white">Filters</h3>
-          </div>
-          <div className="grid md:grid-cols-4 gap-4 mb-4">
-            <select
-              value={filters.stream}
-              onChange={(e) => setFilters({ ...filters, stream: e.target.value })}
-              className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="">All Streams</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Medical">Medical</option>
-              <option value="Commerce">Commerce</option>
-              <option value="Arts">Arts</option>
-            </select>
-            <select
-              value={filters.branch}
-              onChange={(e) => setFilters({ ...filters, branch: e.target.value })}
-              className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="">Branch</option>
-              <option value="Computer Science">Computer Engineering</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Mechanical">Mechanical</option>
-              <option value="Civil">Civil</option>
-            </select>
-            <select
-              value={filters.year}
-              onChange={(e) => setFilters({ ...filters, year: e.target.value })}
-              className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="">All Years</option>
-              <option value="1st Year">1st Year</option>
-              <option value="2nd Year">2nd Year</option>
-              <option value="3rd Year">3rd Year</option>
-              <option value="4th Year">4th Year</option>
-            </select>
-            <select
-              value={filters.semester}
-              onChange={(e) => setFilters({ ...filters, semester: e.target.value })}
-              className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="">All Semesters</option>
-              <option value="Spring">Spring</option>
-              <option value="Fall">Fall</option>
-            </select>
-          </div>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search subjects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-        </div>
+        {/* Removed filter and search box for mobile simplification */}
 
         {/* Question Papers Grid */}
+        <h2 className="text-4xl font-bold mb-8 text-center">
+          <span className="bg-gradient-to-r from-purple-400 to-red-400 bg-clip-text text-transparent">
+            UNIVERSITY PYQS
+          </span>
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {!loading && filteredPapers.length === 0 && (
             <div className="text-center text-gray-400 py-12">No papers found.</div>

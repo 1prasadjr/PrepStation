@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Check, X } from 'lucide-react';
 
 const ToDoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem('todos');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [newTodo, setNewTodo] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = () => {
     if (newTodo.trim()) {
@@ -34,24 +41,24 @@ const ToDoList = () => {
   };
 
   return (
-    <div className="bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-800">
-      <h3 className="text-xl font-bold text-white mb-6">My Tasks</h3>
+    <div className="bg-gray-900 p-4 sm:p-6 rounded-lg shadow-lg border border-gray-800 w-full max-w-full">
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">My Tasks</h3>
       
       {/* Add new todo */}
-      <div className="flex mb-6">
+      <div className="flex flex-col sm:flex-row mb-4 sm:mb-6 gap-2 sm:gap-0">
         <input
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Add a new task..."
-          className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          className="flex-1 px-3 py-2 sm:px-4 sm:py-3 bg-gray-800 border border-gray-700 rounded-t-lg sm:rounded-l-lg sm:rounded-t-none text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
         />
         <button
           onClick={addTodo}
-          className="px-4 py-3 bg-purple-600 text-white rounded-r-lg hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center"
+          className="px-3 py-2 sm:px-4 sm:py-3 bg-purple-600 text-white rounded-b-lg sm:rounded-r-lg sm:rounded-b-none hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center"
         >
-          <Plus size={20} />
+          <Plus size={18} />
         </button>
       </div>
 

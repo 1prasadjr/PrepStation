@@ -48,8 +48,8 @@ const PredictionPage = () => {
   };
 
   const handlePredict = async () => {
-    if (files.length === 0) {
-      setError('Please upload at least 1 file');
+    if (files.length < 3) {
+      setError('Please upload at least 3 files');
       return;
     }
 
@@ -113,8 +113,16 @@ const PredictionPage = () => {
         setPdfUrl(url);
         setPrediction('predicted-questions.pdf');
       } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Prediction failed');
+        let errorMessage = 'Prediction failed';
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } else {
+          const errorText = await response.text();
+          errorMessage = errorText || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Prediction error:', error);
@@ -126,11 +134,11 @@ const PredictionPage = () => {
 
   const handleDownload = () => {
     if (pdfUrl) {
-      const link = document.createElement('a');
+    const link = document.createElement('a');
       link.href = pdfUrl;
-      link.download = 'predicted-questions.pdf';
+    link.download = 'predicted-questions.pdf';
       document.body.appendChild(link);
-      link.click();
+    link.click();
       document.body.removeChild(link);
       // Optionally, revoke the object URL after download
       // window.URL.revokeObjectURL(pdfUrl);
@@ -228,16 +236,16 @@ const PredictionPage = () => {
           )}
 
           {/* Requirements */}
-          <div className="mt-6 p-4 bg-gray-800 rounded-lg border border-gray-700">
+          <div className="mt-6">
             <h4 className="text-lg font-semibold text-white mb-3">Requirements:</h4>
             <div className="space-y-2">
               <div className="flex items-center">
                 <CheckCircle 
-                  className={`mr-2 ${files.length >= 1 ? 'text-green-400' : 'text-gray-400'}`} 
+                  className={`mr-2 ${files.length >= 3 ? 'text-green-400' : 'text-gray-400'}`} 
                   size={16} 
                 />
-                <span className={files.length >= 1 ? 'text-green-400' : 'text-gray-400'}>
-                  Upload at least 1 file
+                <span className={files.length >= 3 ? 'text-green-400' : 'text-gray-400'}>
+                  Upload at least 3 files
                 </span>
               </div>
               <div className="flex items-center">

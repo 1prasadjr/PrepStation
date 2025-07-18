@@ -49,94 +49,75 @@ const ProfilePage = () => {
           </div>
 
           {/* Profile Information */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <Mail className="text-purple-400 mr-3" size={24} />
-                  <h3 className="text-xl font-semibold text-white">Contact Information</h3>
+          <div className="mb-8 grid md:grid-cols-2 gap-6">
+                {/* Contact Information */}
+                <div>
+                  <div className="flex items-center mb-4">
+                    <User className="text-purple-400 mr-3" size={24} />
+                    <h3 className="text-xl font-semibold text-white">Contact Information</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        Email Address
+                      </label>
+                      <p className="text-white">{user.email}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      Email Address
-                    </label>
-                    <p className="text-white">{user.email}</p>
+                {/* Personal Details */}
+                <div>
+                  <div className="flex items-center mb-4">
+                    <User className="text-purple-400 mr-3" size={24} />
+                    <h3 className="text-xl font-semibold text-white">Personal Details</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        Full Name
+                      </label>
+                      <p className="text-white">{user.name}</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Academic Information */}
+                <div className="md:col-span-2">
+                  <div className="flex items-center mb-4">
+                    <GraduationCap className="text-purple-400 mr-3" size={24} />
+                    <h3 className="text-xl font-semibold text-white">Academic Information</h3>
+                  </div>
+                  <div className="space-y-3 md:flex md:space-y-0 md:space-x-8">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        College
+                      </label>
+                      <p className="text-white">{user.college}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        Stream
+                      </label>
+                      <p className="text-white">{user.stream}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        Branch
+                      </label>
+                      <p className="text-white">{user.branch}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                        Current Year
+                      </label>
+                      <p className="text-white">{user.year}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <User className="text-purple-400 mr-3" size={24} />
-                  <h3 className="text-xl font-semibold text-white">Personal Details</h3>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      Full Name
-                    </label>
-                    <p className="text-white">{user.name}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <GraduationCap className="text-purple-400 mr-3" size={24} />
-                  <h3 className="text-xl font-semibold text-white">Academic Information</h3>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      College
-                    </label>
-                    <p className="text-white">{user.college}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      Stream
-                    </label>
-                    <p className="text-white">{user.stream}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      Branch
-                    </label>
-                    <p className="text-white">{user.branch}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
-                      Current Year
-                    </label>
-                    <p className="text-white">{user.year}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Quick Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center">
-            <BookOpen className="mx-auto text-purple-400 mb-3" size={40} />
-            <h3 className="text-2xl font-bold text-white mb-2">24</h3>
-            <p className="text-gray-400">Papers Downloaded</p>
-          </div>
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center">
-            <Calendar className="mx-auto text-red-400 mb-3" size={40} />
-            <h3 className="text-2xl font-bold text-white mb-2">7</h3>
-            <p className="text-gray-400">Days Active</p>
-          </div>
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center">
-            <School className="mx-auto text-purple-400 mb-3" size={40} />
-            <h3 className="text-2xl font-bold text-white mb-2">3</h3>
-            <p className="text-gray-400">Subjects Studied</p>
-          </div>
-        </div>
+        {/* Removed quick stats: Papers Downloaded, Days Active, Subjects Studied */}
 
         {/* Action Buttons */}
         <div className="flex justify-center space-x-4">
